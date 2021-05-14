@@ -160,6 +160,7 @@ const SourceDesktop = ({ source }) => {
   );
 
   const photometry = useSelector((state) => state.photometry[source.id]);
+  // const currentUser = useSelector((state) => state.profile);
 
   const { observingRunList } = useSelector((state) => state.observingRuns);
   const { taxonomyList } = useSelector((state) => state.taxonomies);

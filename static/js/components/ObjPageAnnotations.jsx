@@ -1,5 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
+
 import PropTypes from "prop-types";
+import Button from "@material-ui/core/Button";
 
 import {
   makeStyles,
@@ -85,6 +88,7 @@ const ObjPageAnnotations = ({ annotations }) => {
       tableData.push({ origin, key, value, author, created_at });
     });
   });
+  const currentUser = useSelector((state) => state.profile);
 
   const columns = [
     {
@@ -134,6 +138,18 @@ const ObjPageAnnotations = ({ annotations }) => {
       <MuiThemeProvider theme={getMuiTheme(theme)}>
         <MUIDataTable columns={columns} data={tableData} options={options} />
       </MuiThemeProvider>
+      <div>
+        {currentUser.permissions.includes("Annotate") && (
+          <Button
+            variant="contained"
+            color="primary"
+            className={classes.button_add}
+            style={{ marginRight: 10 }}
+          >
+            Add annotation
+          </Button>
+        )}
+      </div>
     </div>
   );
 };
